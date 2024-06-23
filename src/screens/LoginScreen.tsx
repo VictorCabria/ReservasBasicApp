@@ -1,7 +1,14 @@
-// src/screens/LoginScreen.tsx
 import React, {useState} from 'react';
-import {View, TextInput, TouchableOpacity, Text, Alert} from 'react-native';
-import {globalStyles} from '../styles/styles'; // Importa los estilos globales
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  Alert,
+  Image,
+} from 'react-native';
+import {globalStyles} from '../styles/styles';
+const iconimage = require('../assets/icono.png');
 
 interface Props {
   navigation: {
@@ -38,7 +45,8 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
   };
 
   return (
-    <View style={globalStyles.container}>
+    <View style={globalStyles.containermap}>
+      <Image source={iconimage} style={globalStyles.image} />
       <TextInput
         style={globalStyles.input}
         placeholder="Email"
@@ -57,6 +65,9 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
       <TouchableOpacity style={globalStyles.button} onPress={handleLogin}>
         <Text style={globalStyles.buttonText}>Iniciar Sesión</Text>
       </TouchableOpacity>
+      <View style={globalStyles.footerContainer}>
+        <Text style={globalStyles.Text}>Creador por Victor</Text>
+      </View>
     </View>
   );
 };

@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {Provider} from 'react-redux';
 import store from './store/store';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import ConfirmationScreen from './screens/ConfirmationScreen';
+import {globalStyles} from '../src/styles/styles';
 
 enum AppScreens {
   LOGIN = 'Login',
@@ -25,6 +26,10 @@ const App: React.FC = () => {
     setCurrentScreen(AppScreens.CONFIRMATION);
   };
 
+  const navigateBack = () => {
+    setCurrentScreen(AppScreens.HOME); // Cambia al estado anterior (pantalla Home en este caso)
+  };
+
   const renderScreen = () => {
     switch (currentScreen) {
       case AppScreens.LOGIN:
@@ -32,7 +37,7 @@ const App: React.FC = () => {
       case AppScreens.HOME:
         return <HomeScreen navigation={{navigate: navigateToConfirmation}} />;
       case AppScreens.CONFIRMATION:
-        return <ConfirmationScreen />;
+        return <ConfirmationScreen navigateBack={navigateBack} />;
       default:
         return null;
     }
@@ -40,17 +45,9 @@ const App: React.FC = () => {
 
   return (
     <Provider store={store}>
-      <View style={styles.container}>{renderScreen()}</View>
+      <View style={globalStyles.container}>{renderScreen()}</View>
     </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default App;

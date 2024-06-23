@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Button,
-  Alert,
-  PermissionsAndroid,
-  Platform,
-} from 'react-native';
+import {View, Text, Button, PermissionsAndroid, Platform} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Geolocation from '@react-native-community/geolocation';
@@ -74,7 +67,6 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
   };
 
   const handleConfirmReservation = () => {
-    Alert.alert('Reserva Confirmada');
     if (routeInfo) {
       dispatch({
         type: 'SET_RESERVATION_INFO',
